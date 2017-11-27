@@ -1,0 +1,462 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*// ----------------------------------- GENERAL ----------------------------------- \\*/
+
+/*//Notes : 'yk_' indicates the id or class of the element was created by me (myk) */
+
+/* -------- Whole Page -------- */
+
+/*Background color of body*/
+body
+{
+background-color:#000;	
+}
+
+/*Whole page wrapper, initially hide */
+.yk_whole_page_wrapper
+{
+	max-width: 79rem;
+	display:none;
+}
+
+/*Loader*/
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin-left: 45%;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* -------- Content Generator Section -------- */
+
+/*Content Generator column wrapper*/
+.yk_content_generator_section 
+{
+    background-color: #566069;	
+	padding-left: 3%;
+    padding-right: 3%;
+}
+
+/*Content Generator Section font*/
+.yk_content_generator_section h2, h3, p, input, span, label 
+{
+    font-family: canta;	
+}
+
+/*Content Generator Title*/
+.yk_content_generator_title
+{
+	color: #fff;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.yk_filter_your_feeds_div
+{
+margin-top:50px;	
+}
+
+/*Remove or select the feed rows*/
+.row.yk_remove_or_select_feed_row {
+    margin-bottom: 5px;
+}
+
+/*RSS Feed Radio Buttons div*/
+.yk_rss_feed_checkbox_buttons_div
+{
+clear:both;	
+margin-top: 25px;
+margin-bottom: 25px;
+border-bottom: 2px solid #cecece;
+padding-bottom: 50px;
+height: 230px;
+}
+
+/*Input*/
+input.yk_input {
+    border-radius: 50px;
+	width: 100%;
+    height: 20px;
+	padding-top: 10px;
+    padding-bottom: 12px;
+	float:left;
+	border: 2px solid #747e87;
+	background-color: #000;
+	color: #fff;
+}
+
+/*Input - focussed*/
+input.yk_input:focus {
+    background-color:#454e57;
+}
+
+/*Input - Filter Feeds*/
+input.yk_input_filter_feeds
+{
+width:85%;	
+}
+
+/*Input - Filter Feeds Placeholder*/
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: canta;
+  font-weight:bold;
+  font-style: italic;
+  font-size: 12px;
+  color: #8795a1;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  font-family: canta;
+  font-weight:bold;
+  font-style: italic;
+  font-size: 12px;
+  color: #8795a1;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  font-family: canta;
+  font-weight:bold;
+  font-style: italic;
+  font-size: 12px;
+  color: #8795a1;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  font-family: canta;
+  font-weight:bold;
+  font-style: italic;
+  font-size: 12px;
+  color: #8795a1;
+}
+
+/*Small search icon image*/
+.yk_search_icon_image
+{
+width: 10%;
+margin-left: 5%;
+}
+
+/*Radio button chosen text*/
+.yk_checkbox_btn_chosen
+{
+color:#fff;
+font-size:14px;
+margin-left:2%;	
+}
+
+/*Restore the feeds option, initially hide*/
+#yk_Restore
+{
+display:none;
+margin-top: 25px;
+margin-left: 5%;
+}
+
+#yk_Restore p 
+{
+color: #fff;
+font-size: 14px;
+
+cursor:pointer;
+}
+
+#yk_Restore p:hover
+{
+color: #000;
+}
+
+
+/*Initially hide custom feeds options*/
+.yk_custom_feed_options
+{
+display:none;
+}
+
+
+/*Customized radio buttons*/
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="checkbox"]:checked + label,
+[type="checkbox"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+}
+[type="checkbox"]:checked + label:before,
+[type="checkbox"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 3.5px solid #fff;
+    border-radius: 100%;
+}
+[type="checkbox"]:checked + label:after,
+[type="checkbox"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #f0a799;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+/*Label for radio buttons*/
+label.yk_checkbox_btn_chosen {
+    font-size: 10px;
+}
+
+/*Remove feed button*/
+.yk_remove_feed 
+{
+cursor:pointer;
+border-radius: 50%;
+margin-left: 20%;
+}
+
+.yk_remove_feed:hover
+{
+background-color:#fff;
+}
+
+/*Add a new feed bits*/
+.yk_add_a_new_feed_div
+{
+margin-top:50px;
+margin-bottom:200px;
+}
+
+.yk_add_a_new_feed_div p 
+{
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+button.yk_input_submit
+{
+	border-radius: 50px;
+    width: 100%;
+    height: 20px;
+    padding-top: 10px;
+    padding-bottom: 25px;
+    float: left;
+    border: 2px solid #747e87;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* -------- RSS Feeds Section -------- */
+
+/*RSS Feeds Section column wrapper*/
+.yk_rss_feeds_section_wrapper
+ {
+    
+	background-color: #e5e3e6;
+}
+
+/*RSS Feeds Section Row*/
+.row.yk_rss_feeds_section_row {
+	margin-top: 25px;
+}
+
+/*Top part of feed*/
+.yk_feed_top {
+    background-color: #566069;
+	padding-left:5%; 
+	padding-right:5%;
+	padding-top:3%;
+	padding-bottom:3%;
+}
+
+/*Small box with arrow image*/
+.yk_box_with_arrow_img
+{
+	width:5%;
+}
+
+/*Feed Name*/
+.yk_feed_name 
+{
+    font-weight: bold;
+    color: #6accff;
+    font-size: 11px;	
+}
+
+.yk_feed_name a {
+    color: #6accff;
+}
+
+.yk_feed_name a:hover {
+    color: #fff;
+}
+
+/*Feed Date*/
+.yk_feed_date
+{
+font-size:9px;
+color:#fff;
+float:right;
+}
+
+/*Feed Image*/
+.yk_feed_image_section 
+{
+background-color:#fff;
+}
+
+/*Feed bottom*/
+.yk_feed_bottom
+{
+padding-left:5%;
+padding-right:5%;	
+background-color:#fff;
+padding-top: 10px;
+}
+
+/*Feed headline*/
+.yk_feed_headline
+{
+font-size:16px;
+color:#939388;
+}
+
+/*Feed content*/
+.yk_feed_content
+{
+font-weight:bold;
+font-size: 12px;	
+}
+
+/* -------- RSS Custom Feeds Section -------- */
+
+/*Initially hide custom feed column*/
+.yk_custom_feed_column
+{
+display:none; 	
+}
+
+/* -------- Modal for prompt to put in appropriate RSS feed -------- */
+
+.yk_modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    display:none; 
+}
+
+.yk_modalcontent {
+    background-color: #fefefe;
+    margin-left: 5%;
+    margin-right: 5%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 15px;
+} 
+
+.yk_modalcontent div
+{
+	padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 35px;
+    padding-top:55px;
+}
+
+/* The Close Button */
+.yk_close_modal {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 10%;
+	cursor:pointer; 
+}
+
+
+.yk_waiting_div h4
+{
+text-align:center; 
+font-size:80px; 
+color:#fff;	
+}
+
+/* ----------------------------------- FONTS ----------------------------------- *\
+/*Cantarell*/
+  @font-face {
+    font-family: 'canta';
+    src: url('Fonts/Cantarell/cantarell-regular-webfont.eot');
+    src: url('Fonts/Cantarell/cantarell-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Fonts/Cantarell/cantarell-regular-webfont.woff2') format('woff2'),
+         url('Fonts/Cantarell/cantarell-regular-webfont.woff') format('woff'),
+         url('Fonts/Cantarell/cantarell-regular-webfont.ttf') format('truetype'),
+         url('Fonts/Cantarell/cantarell-regular-webfont.svg#sc') format('svg');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Random*/
+
+.ykmedium_and_small_titles h2
+{
+	text-align:center;
+	color:#fff;
+}
+
+.yk_after_custom_feed_added_options
+{
+display:none; 	
+}
+
+p.yk_feed_content {
+padding-bottom: 25px;
+}
+

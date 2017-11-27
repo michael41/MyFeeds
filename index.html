@@ -1,0 +1,801 @@
+<!doctype html>
+<html>
+<head>
+<!-- jQuery : -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Foundation : -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.css">
+<meta charset="utf-8">
+<!-- Angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!-- Created JS -->
+<script src="socialsignin.js"></script>
+<!-- Created CSS -->
+<link rel="stylesheet" type="text/css" href="socialsignin.css">
+<meta charset="utf-8">
+<title>RSS Feed Reader</title>
+</head>
+
+<body>
+
+
+   <!-- Waiting div while feeds load -->
+<div class="yk_waiting_div">
+   
+       <h4>Please wait for the feeds to load</h4>
+       
+       <div class="loader"></div>
+   
+</div>
+
+<!--Whole page wrapper to show after loading has finished-->
+<div class="row yk_whole_page_wrapper"  ng-app="plunker" ng-controller="MainCtrl">
+
+
+   <!--'Content Generator' Section - Far left side of the page : only for non small or medium screens-->
+  <div class="hide-for-small hide-for-medium large-3 columns yk_content_generator_section">
+	        <h2 class="yk_content_generator_title">Content Generator</h2>
+            
+            <!-- Filter your feeds div -->
+            <div class="yk_filter_your_feeds_div"><img src="Images/magnifying_glass.png" alt="magnifying glass" class="yk_search_icon_image"/>
+              <input type="search" ng-change="myFunc()" ng-model="search" class="yk_input yk_input_filter_feeds" placeholder="Filter your feeds">
+            </div>
+            
+            <!-- Checkbox Buttons Row -->
+            <div class="yk_rss_feed_checkbox_buttons_div"> 
+            
+            	<div class="row yk_remove_or_select_feed_row yk_custom_feed_options" id="yk_new_custom_feed_1"  filter-list="search">  
+                    <div class="large-8 columns">                 
+                        <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options" id="yk_custom_feed_option_1"></span>
+                     </div> 
+                    <div class="large-4-columns">                
+                  		 <img class="yk_remove_feed" id="yk_remove_custom_feed_1" alt="x icon" src="Images/x_icon.png" />
+                     </div>               
+                  </div>
+                  
+                  <div id="yk_search_outside_custom_feed_options" filter-list="search">
+                    
+                          <div class="row yk_remove_or_select_feed_row" id="yk_bbc_tech_row">  
+                            <div class="large-8 columns"> 
+                               <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options">BBC Tech</span>               
+                               <input type="checkbox" id="ykbtn_1"  class="yk_checkbox_btns" name="rssfeed" value="bbc_tech" checked/>
+                               <label for="ykbtn_1" class="yk_checkbox_btn_chosen yk_checkbox_btn_chosen_lbls">BBC Tech</label> 
+                             </div> 
+                            <div class="large-4-columns">                
+                                 <img class="yk_remove_feed" id="yk_remove_bbc_tech_feed" alt="x icon" src="Images/x_icon.png" />
+                             </div>               
+                          </div>
+                          
+                          <div class="row yk_remove_or_select_feed_row" id="yk_wired_row">  
+                            <div class="large-8 columns">  
+                               <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options">Wired</span>               
+                               <input type="checkbox" id="ykbtn_2"  class="yk_checkbox_btns" name="rssfeed" value="wired" checked/>
+                               <label for="ykbtn_2" class="yk_checkbox_btn_chosen yk_checkbox_btn_chosen_lbls">Wired</label> 
+                             </div> 
+                            <div class="large-4-columns">                
+                                 <img class="yk_remove_feed" id="yk_remove_wired_feed" alt="x icon" src="Images/x_icon.png" />
+                             </div>               
+                          </div>
+                          
+                          <div class="row yk_remove_or_select_feed_row" id="yk_tanda_row">  
+                            <div class="large-8 columns">
+                               <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options">Telegraph and Argus</span>               
+                               <input type="checkbox" id="ykbtn_3"  class="yk_checkbox_btns" name="rssfeed" value="telegraph_and_argus" checked/>
+                               <label for="ykbtn_3" class="yk_checkbox_btn_chosen yk_checkbox_btn_chosen_lbls">Telegraph and Argus</label> 
+                             </div> 
+                            <div class="large-4-columns">                
+                                 <img class="yk_remove_feed" id="yk_remove_tanda_feed" alt="x icon" src="Images/x_icon.png" />
+                             </div>               
+                          </div>
+                          
+                          <div class="row yk_remove_or_select_feed_row" id="yk_mtv_row">  
+                            <div class="large-8 columns">  
+                                <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options">MTV News</span>             
+                               <input type="checkbox" id="ykbtn_4"  class="yk_checkbox_btns" name="rssfeed" value="mtv_news" checked/>
+                               <label for="ykbtn_4" class="yk_checkbox_btn_chosen yk_checkbox_btn_chosen_lbls">MTV News</label> 
+                             </div> 
+                            <div class="large-4-columns">                
+                                 <img class="yk_remove_feed" id="yk_remove_mtv_feed" alt="x icon" src="Images/x_icon.png" />
+                             </div>               
+                          </div>
+                          
+                          <div class="row yk_remove_or_select_feed_row" id="yk_cnn_row">  
+                            <div class="large-8 columns">                 
+                               <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options">CNN News Feed</span>
+                               <input type="checkbox" id="ykbtn_5"  class="yk_checkbox_btns" name="rssfeed" value="cnn" checked/>
+                               <label for="ykbtn_5" class="yk_checkbox_btn_chosen yk_checkbox_btn_chosen_lbls">CNN News Feed</label> 
+                             </div> 
+                            <div class="large-4-columns">                
+                                 <img class="yk_remove_feed" id="yk_remove_cnn_feed" alt="x icon" src="Images/x_icon.png" />
+                             </div>               
+                          </div>
+                          
+                          <div class="row yk_remove_or_select_feed_row" id="yk_cbs_row">  
+                            <div class="large-8 columns">                 
+                               <span class="yk_checkbox_btn_chosen yk_after_custom_feed_added_options">CBS News Feed</span>
+                               <input type="checkbox" id="ykbtn_6"  class="yk_checkbox_btns" name="rssfeed" value="cbs" checked/>
+                               <label for="ykbtn_6" class="yk_checkbox_btn_chosen yk_checkbox_btn_chosen_lbls">CBS News Feed</label> 
+                             </div> 
+                            <div class="large-4-columns">                
+                                 <img class="yk_remove_feed" id="yk_remove_cbs_feed" alt="x icon" src="Images/x_icon.png" />
+                             </div>               
+                          </div>
+                  
+                  </div>
+                  
+                  <div id="yk_Restore"><p class="yk_restore_all_feeds">Restore fitered feeds</p></div>
+           
+    </div>
+    
+    		<!--Add a new feed div-->
+            <div class="yk_add_a_new_feed_div">
+            		
+                   
+                    <div class="yk_add_new_feed_form">
+                        <div>
+                        <p class="yk_add_a_new_feed">Add a new feed</p>
+                        </div>
+                        
+                        <div>
+                        <input type="text" class="yk_input" id="yk_type_in_feed_name_input" placeholder="Type your feed name" required="">
+                        </div>
+                        
+                        <div>
+                        <input type="url" class="yk_input" id="yk_paste_in_rss_url_input" placeholder="Paste in your RSS url"  pattern="https?://.+" required />
+                        </div>
+                        
+                        <div>
+                        <button class="yk_input yk_input_submit">Add feed</button>
+                        </div>
+                    </div>
+                 
+            </div>
+            
+				
+  </div>
+  
+  
+  <!-- Headine on top of page : only for small or medium screens-->
+  <div class="show-for-medium-only medium-12 ykmedium_and_small_titles"><h2>RSS Feeds</h2></div>
+  
+  <div class="show-for-small-only small-12 ykmedium_and_small_titles"><h2>RSS Feeds</h2></div>
+
+
+  <!--Main body of the page with RSS feeds Section - Right side of the page-->
+  <div class="large-9 small-12 medium-12 columns yk_rss_feeds_section_wrapper">
+	        
+          <div class="row yk_rss_feeds_section_row">
+
+	 		   <div class="large-4 small-12 medium-12 columns yk_rss_feeds_section_column">
+	      			  <div class="row">
+                      
+                      
+                             <!-- Modal to display prompt msg about entering appropriate RSS feed url -->
+				            <div class="yk_modal" id="yk_rss_info_modal">
+                             
+                       			    <!-- Modal content -->
+                       			 	<div class="yk_modalcontent"><span class="yk_close_modal">×</span>
+                                     
+                                     <div>
+                                         <p>Please enter in an RSS feed name and a url for the RSS feed.<br />
+                                         For example : <strong>BBC Football Feed : <a href="http://feeds.bbci.co.uk/sport/football/rss.xml?edition=uk" target="_blank">http://feeds.bbci.co.uk/sport/football/rss.xml?edition=uk</a></strong></p>
+                                      <!--Enter prescribed details to input area-->   	
+                                     <button class="yk_enter_details_to_input_areas">Insert details</button>
+                                     
+                                     </div>
+                                
+                               		 </div>
+							</div>
+                      
+                            <!-- Blank columns so that when all feeds in this column are hidden, won't alter page design -->
+                      		<div class="small-12 columns">                            
+                                &nbsp;                              
+                            </div>
+                            
+                            <!-------------------------------------------CUSTOM FEED 1 (i) ---------->
+                            
+                            <div class="small-12 columns yk_custom_feed_column" filter-list="search">
+                            
+                               <div class="yk_rss_feeds_section">
+                                
+                                    <div class="yk_feed_top">
+                                        <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                        <span class="yk_feed_name yk_CF_feed_name yk_rss_CF_rssname_0"></span>
+                                        <span class="yk_feed_date yk_rss_CF_date_0"></span>
+                                    </div>
+                            
+                                    <div class="yk_feed_image_section">
+                                        <img class="yk_feed_image yk_CF_rss_image_0"/>
+                                    </div>
+                            
+                                    <div class="yk_feed_bottom">
+                                        <h3 class="yk_feed_headline yk_CF_rss_headline_0"></h3>
+                                        <p class="yk_feed_content yk_CF_rss_content_0"></p>
+                                    </div>
+                            
+                            
+                        	   </div>
+                               
+                               
+                               
+                            </div>
+                            
+                            
+                            <div class="yk_non_custom_feeds_div" filter-list="search">
+                                    <!------------------------------------------- FEED 1 (i) ---------->
+                       
+                       				<!-- using inline style also because angular search removes the div's class -->
+                                    <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                    
+                                        <div class="yk_rss_feeds_section">
+                                        
+                                            <div class="yk_feed_top">
+                                                <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                                <span class="yk_feed_name yk_rss_rssname_0"></span>
+                                                <span class="yk_feed_date yk_rss_date_0"></span>
+                                            </div>
+                                    
+                                            <div class="yk_feed_image_section">
+                                                <img class="yk_feed_image yk_rss_image_0"/>
+                                            </div>
+                                    
+                                            <div class="yk_feed_bottom">
+                                                <h3 class="yk_feed_headline yk_rss_headline_0"></h3>
+                                                <p class="yk_feed_content yk_rss_content_0"></p>
+                                            </div>
+                                    
+                                    
+                                       </div>
+                                       
+                                    </div>   
+                                    
+                                    <!------------------------------------------- FEED 2 (i) ---------->                                                   
+                                     <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                    
+                                        <div class="yk_rss_feeds_section">
+                                        
+                                            <div class="yk_feed_top">
+                                                <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                                <span class="yk_feed_name yk_rss_rssname_3"></span>
+                                                <span class="yk_feed_date yk_rss_date_3"></span>
+                                            </div>
+                                    
+                                            <div class="yk_feed_image_section">
+                                                <img class="yk_feed_image yk_rss_image_3"/>
+                                            </div>
+                                    
+                                            <div class="yk_feed_bottom">
+                                                <h3 class="yk_feed_headline yk_rss_headline_3"></h3>
+                                                <p class="yk_feed_content yk_rss_content_3"></p>
+                                            </div>
+                                    
+                                    
+                                       </div>
+                                       
+                                    </div>
+                                    
+                                     <!------------------------------------------- FEED 3 (i) ---------->                                                   
+                                     <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                    
+                                        <div class="yk_rss_feeds_section">
+                                        
+                                            <div class="yk_feed_top">
+                                                <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                                <span class="yk_feed_name yk_rss_rssname_6"></span>
+                                                <span class="yk_feed_date yk_rss_date_6"></span>
+                                            </div>
+                                    
+                                            <div class="yk_feed_image_section">
+                                                <img class="yk_feed_image yk_rss_image_6"/>
+                                            </div>
+                                    
+                                            <div class="yk_feed_bottom">
+                                                <h3 class="yk_feed_headline yk_rss_headline_6"></h3>
+                                                <p class="yk_feed_content yk_rss_content_6"></p>
+                                            </div>
+                                    
+                                    
+                                       </div>
+                                       
+                                    </div>
+                                    
+                                    <!------------------------------------------- FEED 4 (i) ---------->                                                   
+                                     <div class="lsmall-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                    
+                                        <div class="yk_rss_feeds_section">
+                                        
+                                            <div class="yk_feed_top">
+                                                <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                                <span class="yk_feed_name yk_rss_rssname_9"></span>
+                                                <span class="yk_feed_date yk_rss_date_9"></span>
+                                            </div>
+                                    
+                                            <div class="yk_feed_image_section">
+                                                <img class="yk_feed_image yk_rss_image_9"/>
+                                            </div>
+                                    
+                                            <div class="yk_feed_bottom">
+                                                <h3 class="yk_feed_headline yk_rss_headline_9"></h3>
+                                                <p class="yk_feed_content yk_rss_content_9"></p>
+                                            </div>
+                                    
+                                    
+                                       </div>
+                                       
+                                    </div>
+                                    
+                                    <!------------------------------------------- FEED 5 (i) ---------->
+                                    
+                                     <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                    
+                                        <div class="yk_rss_feeds_section">
+                                        
+                                            <div class="yk_feed_top">
+                                                <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                                <span class="yk_feed_name yk_rss_rssname_12"></span>
+                                                <span class="yk_feed_date yk_rss_date_12"></span>
+                                            </div>
+                                    
+                                            <div class="yk_feed_image_section">
+                                                <img class="yk_feed_image yk_rss_image_12"/>
+                                            </div>
+                                    
+                                            <div class="yk_feed_bottom">
+                                                <h3 class="yk_feed_headline yk_rss_headline_12"></h3>
+                                                <p class="yk_feed_content yk_rss_content_12"></p>
+                                            </div>
+                                    
+                                    
+                                       </div>
+                                       
+                                    </div>
+                                    
+                                    <!------------------------------------------- FEED 6 (i) ---------->
+                                    
+                                     <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                    
+                                        <div class="yk_rss_feeds_section">
+                                        
+                                            <div class="yk_feed_top">
+                                                <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                                <span class="yk_feed_name yk_rss_rssname_15"></span>
+                                                <span class="yk_feed_date yk_rss_date_15"></span>
+                                            </div>
+                                    
+                                            <div class="yk_feed_image_section">
+                                                <img class="yk_feed_image yk_rss_image_15"/>
+                                            </div>
+                                    
+                                            <div class="yk_feed_bottom">
+                                                <h3 class="yk_feed_headline yk_rss_headline_15"></h3>
+                                                <p class="yk_feed_content yk_rss_content_15"></p>
+                                            </div>
+                                    
+                                    
+                                       </div>
+                                       
+                                    </div>                            
+                            
+                            </div>
+                     
+                            
+                            
+                            
+       				 </div>
+      		   </div>
+              
+               <div class="large-4 small-12 medium-12 columns yk_rss_feeds_section_column">
+	      			  <div class="row">
+                      
+                      		<!-- Blank columns so that when all feeds in this column are hidden, won't alter page design -->
+                      		<div class="large-12 small-12 medium-12 columns">                            
+                                &nbsp;                              
+                            </div>
+                            
+                             <!-------------------------------------------CUSTOM FEED 1(ii) ---------->
+                            
+                            <div class="small-12 columns yk_custom_feed_column" filter-list="search">
+                            
+                               <div class="yk_rss_feeds_section">
+                                
+                                    <div class="yk_feed_top">
+                                        <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                        <span class="yk_feed_name yk_CF_feed_name yk_rss_CF_rssname_1"></span>
+                                        <span class="yk_feed_date yk_rss_CF_date_1"></span>
+                                    </div>
+                            
+                                    <div class="yk_feed_image_section">
+                                        <img class="yk_feed_image yk_CF_rss_image_1"/>
+                                    </div>
+                            
+                                    <div class="yk_feed_bottom">
+                                        <h3 class="yk_feed_headline yk_CF_rss_headline_1"></h3>
+                                        <p class="yk_feed_content yk_CF_rss_content_1"></p>
+                                    </div>
+                            
+                            
+                        	   </div>
+                               
+                               
+                               
+                            </div>
+                            
+                            
+                            <div class="yk_non_custom_feeds_div" filter-list="search">
+                            
+                                <!------------------------------------------- FEED 1 (ii) ---------->
+                                
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_1"></span>
+                                            <span class="yk_feed_date yk_rss_date_1"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_1"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_1"></h3>
+                                            <p class="yk_feed_content yk_rss_content_1"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 2 (ii) ---------->
+                                
+                                 <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_4"></span>
+                                            <span class="yk_feed_date yk_rss_date_4"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_4"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_4"></h3>
+                                            <p class="yk_feed_content yk_rss_content_4"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 3 (ii) ---------->                                                   
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_7"></span>
+                                            <span class="yk_feed_date yk_rss_date_7"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_7"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_7"></h3>
+                                            <p class="yk_feed_content yk_rss_content_7"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 4 (ii) ---------->                                                   
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section" id="test" >
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_10"></span>
+                                            <span class="yk_feed_date yk_rss_date_10"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_10"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_10"></h3>
+                                            <p class="yk_feed_content yk_rss_content_10"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 5 (ii) ---------->
+                                
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_13"></span>
+                                            <span class="yk_feed_date yk_rss_date_13"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_13"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_13"></h3>
+                                            <p class="yk_feed_content yk_rss_content_13"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 6 (ii) ---------->
+                                
+                                 <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_16"></span>
+                                            <span class="yk_feed_date yk_rss_date_16"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_16"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_16"></h3>
+                                            <p class="yk_feed_content yk_rss_content_16"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>  
+                                
+                         </div>
+       
+       				 </div>
+      		  </div>
+              
+               <div class="large-4 small-12 medium-12 columns yk_rss_feeds_section_column">
+	      			  <div class="row">
+                      
+                      		<!-- Blank columns so that when all feeds in this column are hidden, won't alter page design -->
+                      		<div class="small-12 columns">                            
+                                &nbsp;                              
+                            </div>
+                            
+                            <!-------------------------------------------CUSTOM FEED 1 (iii) ---------->
+                            
+                            <div class="small-12 columns yk_custom_feed_column" filter-list="search">
+                            
+                               <div class="yk_rss_feeds_section">
+                                
+                                    <div class="yk_feed_top">
+                                        <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                        <span class="yk_feed_name yk_CF_feed_name yk_rss_CF_rssname_2"></span>
+                                        <span class="yk_feed_date yk_rss_CF_date_2"></span>
+                                    </div>
+                            
+                                    <div class="yk_feed_image_section">
+                                        <img class="yk_feed_image yk_CF_rss_image_2"/>
+                                    </div>
+                            
+                                    <div class="yk_feed_bottom">
+                                        <h3 class="yk_feed_headline yk_CF_rss_headline_2"></h3>
+                                        <p class="yk_feed_content yk_CF_rss_content_2"></p>
+                                    </div>
+                            
+                            
+                        	   </div>
+                               
+                               
+                               
+                            </div>
+                            
+                            
+                            <div class="yk_non_custom_feeds_div" filter-list="search">
+                            
+                                 <!------------------------------------------- FEED 1 (iii) ---------->
+                                 
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_2"></span>
+                                            <span class="yk_feed_date yk_rss_date_2"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_2"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_2"></h3>
+                                            <p class="yk_feed_content yk_rss_content_2"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 2 (iii) ---------->
+                                 
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_5"></span>
+                                            <span class="yk_feed_date yk_rss_date_5"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_5"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_5"></h3>
+                                            <p class="yk_feed_content yk_rss_content_5"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>   
+                                
+                                <!------------------------------------------- FEED 3 (iii) ---------->                                                   
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_8"></span>
+                                            <span class="yk_feed_date yk_rss_date_8"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_8"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_8"></h3>
+                                            <p class="yk_feed_content yk_rss_content_8"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+            
+                               <!------------------------------------------- FEED 4 (iii) ---------->                                                   
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_11"></span>
+                                            <span class="yk_feed_date yk_rss_date_11"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_11"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_11"></h3>
+                                            <p class="yk_feed_content yk_rss_content_11"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 5 (iii) ---------->
+                                
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_14"></span>
+                                            <span class="yk_feed_date yk_rss_date_14"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_14"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_14"></h3>
+                                            <p class="yk_feed_content yk_rss_content_14"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>
+                                
+                                <!------------------------------------------- FEED 6 (iii) ---------->
+                                
+                                <div class="small-12 columns" style="ms-flex: 1 1 0px; flex: 1 1 0px; padding-right: 0.9375rem;    padding-left: 0.9375rem; min-width: 0;">
+                                
+                                    <div class="yk_rss_feeds_section">
+                                    
+                                        <div class="yk_feed_top">
+                                            <img class="yk_box_with_arrow_img" src="Images/box_with_arrow.png" alt="box with arrow"/>
+                                            <span class="yk_feed_name yk_rss_rssname_17"></span>
+                                            <span class="yk_feed_date yk_rss_date_17"></span>
+                                        </div>
+                                
+                                        <div class="yk_feed_image_section">
+                                            <img class="yk_feed_image yk_rss_image_17"/>
+                                        </div>
+                                
+                                        <div class="yk_feed_bottom">
+                                            <h3 class="yk_feed_headline yk_rss_headline_17"></h3>
+                                            <p class="yk_feed_content yk_rss_content_17"></p>
+                                        </div>
+                                
+                                
+                                   </div>
+                                   
+                                </div>  
+                            
+                            
+                            </div>
+                            
+       				 </div>
+      		  </div> 
+        
+     		   
+        
+      		   
+        
+
+       
+
+
+</div>
+            
+  </div>
+
+	</div>
+
+
+</body>
+</html>

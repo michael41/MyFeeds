@@ -1,0 +1,21 @@
+
+Hi, 
+
+Thanks for taking the time to review this task. 
+
+Here is a brief summary of what was achieved in this task : 
+
+- 6 RSS feeds pulled onto the page and customized accordingly using rss2json API 
+- The ability to hide and show feeds using checklist buttons
+- The ability to hide feeds using the pink 'x' button 
+- The ability to then restore all feeds 
+- The ability to add one new feed 
+- The ability to filter the feeds on the page
+- Tried to mimic as much as possible the style of the original .pds file for the task
+- For small and medium screens, a much more limited functionality, but displays properly on page
+
+Thanks again and I look forward to hearing from you soon, 
+
+Kind regards, 
+
+Michael 
