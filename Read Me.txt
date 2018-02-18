@@ -1,9 +1,7 @@
 
 Hi, 
 
-Thanks for taking the time to take a look at this project. 
-
-Here is a brief summary of what was achieved : 
+Here is a brief summary of what was achieved in this project : 
 
 - 6 RSS feeds pulled onto the page and customized accordingly using rss2json API 
 - The ability to hide and show feeds using checklist buttons
@@ -14,8 +12,4 @@ Here is a brief summary of what was achieved :
 - Tried to mimic as much as possible the style of the original .pds file for the task
 - For small and medium screens, a much more limited functionality, but displays properly on page
 
-Thanks again, 
 
-Kind regards, 
-
-Michael 
